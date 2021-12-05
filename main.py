@@ -11,7 +11,7 @@ app.setStyle('Fusion')
 window = MainWindow()
 window.show() # carregar o elemento para a tela
 # deixa para carregar após a abertura da janela
-window.loadPokemons()
+#window.loadPokemons()
 
 
 #executar o aplicativo

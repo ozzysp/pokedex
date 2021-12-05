@@ -6,7 +6,7 @@ FILE_UI = 'view/pokemon.ui'
 
 
 class Pokemon(QWidget):
-    def __init__(self, data_poke):
+    def __init__(self, data_poke, info_poker, icon_poker):
         super().__init__()
         uic.loadUi(FILE_UI, self)
 
@@ -15,13 +15,11 @@ class Pokemon(QWidget):
 
         self.nome_label.setText(self.nome[0].upper()+self.nome[1:])
 
-        res = buscar_pokemon(self.url)
-        self.id_label.setText('# '+str(res['id']))
+        self.id_label.setText('# '+str(info_poker['id']))
 
-        img = res['sprites']['front_default']
-        self.img_label.setPixmap(loadImg(img))
+        self.img_label.setPixmap(icon_poker)
 
-        self.loadTypes(res['types'])
+        self.loadTypes(info_poker['types'])
 
     def loadTypes(self, type_list):
         for type in type_list:
