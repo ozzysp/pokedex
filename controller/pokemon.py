@@ -1,6 +1,5 @@
 from controller.type_poke import Type_poke
 from qt_core import *
-from services.api import buscar_pokemon
 
 FILE_UI = 'view/pokemon.ui'
 
@@ -20,6 +19,15 @@ class Pokemon(QWidget):
         self.img_label.setPixmap(icon_poker)
 
         self.loadTypes(info_poker['types'])
+
+        self.frame.setStyleSheet("QFrame::hover"
+                                 "{"
+                                 "background-color : rgb(222, 221, 218);"
+                                 "}")
+
+    def mousePressEvent(self, event):
+
+        print('clicou >>>> ' + self.nome)
 
     def loadTypes(self, type_list):
         for type in type_list:

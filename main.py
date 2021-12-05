@@ -4,15 +4,16 @@ from qt_core import *
 #importa a classe MainWindow - Janela principal
 from controller.main_window import MainWindow
 
-# cria a aplicação
-app = QApplication(sys.argv)
-app.setStyle('Fusion')
-# definir os widgets que aparecerão na tela
-window = MainWindow()
-window.show() # carregar o elemento para a tela
-# deixa para carregar após a abertura da janela
-#window.loadPokemons()
+if __name__ == "__main__":
+    # cria a aplicação
+    app = QApplication(sys.argv)
+    #app.setWindowIcon(QIcon('assets/logo/logo.png'))
+    app.setStyle('Fusion')
+    # definir os widgets que aparecerão na tela
+    window = MainWindow()
+    window.show() # carregar o elemento para a tela
 
 
-#executar o aplicativo
-app.exec()
+
+    #executar o aplicativo
+    sys.exit(app.exec())

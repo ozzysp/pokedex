@@ -69,3 +69,4 @@ class MainWindow(QMainWindow):
 
     def print_result(self, result):
         self.statusbar.showMessage(result)
+        self.buscar_poke.setEnabled(True)
