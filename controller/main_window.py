@@ -42,22 +42,28 @@ class MainWindow(QMainWindow):
     def loadPokemons(self, progress_callback, insert_callback):
         res = buscar_pokemons()
         list = res['results']
+        lin = 0
         i = 0
-        for x in range(len(list)//2):
-            for y in range(2):
-                progress_callback.emit(i)
-                # pega os dados que exigem request
-                data_poker = list[i]
-                info_poker = buscar_pokemon(list[i]['url'])
-                icon_poker = loadImg(info_poker['sprites']['front_default'])
-                # emit os dados coletados
-                insert_callback.emit(
-                    (data_poker, info_poker, icon_poker, x, y))
-                i += 1
+        try:
+            while i < len(list):
+                for col in range(0, 3):
+                    progress_callback.emit(i)
+                    # pega os dados que exigem request
+                    data_poker = list[i]
+                    info_poker = buscar_pokemon(list[i]['url'])
+                    icon_poker = loadImg(info_poker['sprites']['front_default'])
+                    # emit os dados coletados
+                    insert_callback.emit(
+                        (data_poker, info_poker, icon_poker, lin, col))
+                    i += 1
+                lin += 1
+        except:
+            pass
 
         return "Carregamento concluído com sucesso!"
 
     def thread_error(self, err):
+        print(err)
         self.statusbar.showMessage(
             "Erro ao carregar Pokemons. Por favor, tente novamente.")
 
