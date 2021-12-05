@@ -10,7 +10,8 @@ class MainWindow(QMainWindow):
     
     def loadPokemons(self):
         #self.clear()
-        list = buscar_pokemons()
+        res = buscar_pokemons()
+        list = res['results']
         
         i = 0
         for x in range(len(list)//2):

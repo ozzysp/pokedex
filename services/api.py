@@ -4,7 +4,7 @@ import requests
 import json
 
 BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
-NUMBER_MAX_POKEMONS_API = 6
+NUMBER_MAX_POKEMONS_API = 20
 
 params = {'limit': NUMBER_MAX_POKEMONS_API}
 
@@ -13,8 +13,7 @@ def buscar_pokemons():
     #url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
     request = requests.get(BASE_URL, params)
     response = json.loads(request.content)
-    return response['results']
-
+    return response
 
 def buscar_pokemon(url_poke):
     request = requests.get(url_poke)
