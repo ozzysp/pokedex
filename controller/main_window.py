@@ -51,7 +51,7 @@ class MainWindow(QMainWindow):
                     # pega os dados que exigem request
                     data_poker = list[i]
                     info_poker = buscar_pokemon(list[i]['url'])
-                    icon_poker = loadImg(info_poker['sprites']['front_default'])
+                    icon_poker = loadImg(info_poker['sprites']['other']['home']['front_default'])
                     # emit os dados coletados
                     insert_callback.emit(
                         (data_poker, info_poker, icon_poker, lin, col))

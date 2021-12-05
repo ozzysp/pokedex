@@ -14,3 +14,5 @@
 ### Conceitos abordados
 
 ## Instalação e execução
+
+## Agradecimentos

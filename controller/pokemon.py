@@ -20,10 +20,9 @@ class Pokemon(QWidget):
 
         self.loadTypes(info_poker['types'])
 
-        self.frame.setStyleSheet("QFrame::hover"
-                                 "{"
-                                 "background-color : rgb(222, 221, 218);"
-                                 "}")
+        self.img_label.setStyleSheet("background-image : url(assets/patterns/pokeball.svg); background-repeat: no-repeat; background-position: right; ")
+
+        self.frame.setStyleSheet(".QFrame::hover {background-color : rgb(222, 221, 218);}")
 
     def mousePressEvent(self, event):
 

@@ -25,7 +25,7 @@ if __name__ == '__main__':
     os.system('clear')
     res = buscar_pokemon('https://pokeapi.co/api/v2/pokemon/1/')
     # res.data.sprites.front_default;
-    print(res['types'])
+    print(res['sprites']['other']['home'])
     """lista = buscar_pokemons()
     print(len(lista))
     for poke in lista:
