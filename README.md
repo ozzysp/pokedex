@@ -29,4 +29,19 @@
 
 ## Instalação e execução
 
+Faça um clone desse repositório e acesse o diretório.
+
+```bash
+git clone git@github.com:LeeonardoVargas/pokedex.git && cd pokedex
+```
+
+```
+# Instalando as dependências
+pip install -r requirements.txt
+
+# Executanto aplicação
+python main.py
+
+```
+
 ## Agradecimentos
