@@ -30,18 +30,18 @@
 ## Instalação e execução
 
 Faça um clone desse repositório e acesse o diretório.
-
 ```bash
 git clone git@github.com:rafatosta/pokedex.git && cd pokedex
 ```
 
-```
-# Instalando as dependências
+Instalando as dependências
+```bash
 pip install -r requirements.txt
+```
 
-# Executanto aplicação
+Executanto aplicação
+```bash
 python main.py
-
 ```
 
 ## Agradecimentos
