@@ -27,7 +27,6 @@
 
 - Consumo de API com o uso da lib [request](https://docs.python-requests.org/)
 - Construção de GUI com [PyQt5](https://pypi.org/project/PyQt5/)
-- 
 
 ## Instalação e execução
 
