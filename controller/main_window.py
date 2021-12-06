@@ -34,18 +34,16 @@ class MainWindow(QMainWindow):
         self.threadpool.start(worker)
 
     def text_edited(self, search):
-        os.system("clear")
-        for i in reversed(range(self.layout_pokemons.count())): 
-            self.layout_pokemons.itemAt(i).widget().setParent(None)
-        if search != "":
+        for i in reversed(range(self.layout_pokemons.count())):
+               self.layout_pokemons.itemAt(i).widget().deleteLater()
+        if search == "":
+            self.carrega_dados(self.lista_pokes)
+        else:
             lista_search = []
             for p in self.lista_pokes:
                 if search in p['name']:
-                    print(p['name'])
                     lista_search.append(p)
             self.carrega_dados(lista_search)
-        else:
-            self.carrega_dados(self.lista_pokes)
 
     def carrega_dados(self, lista):
         lin = 0

@@ -15,8 +15,8 @@ def getAbsPath(path):
 
 def loadImg(url_image):
     if url_image != "":
-        image = QImage()
         img = requests.get(url_image).content
+        image = QImage()
         image.loadFromData(img)
         return QPixmap(image)
 
