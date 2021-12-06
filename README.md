@@ -26,6 +26,8 @@
 ### Conceitos abordados
 
 - Consumo de API com o uso da lib [request](https://docs.python-requests.org/)
+- Construção de GUI com [PyQt5](https://pypi.org/project/PyQt5/)
+- 
 
 ## Instalação e execução
 
@@ -45,3 +47,5 @@ python main.py
 ```
 
 ## Agradecimentos
+
+Agradeço ao [Leo Vargas](https://github.com/LeeonardoVargas/pokedex) por colaborar, indiretamente, com a minha falta de criatividade de construção da interface gráfica.  
