@@ -9,8 +9,8 @@
 
 
 ### Funcionalidades
-- [x] ** Listagem dos pokémons**: Listar os pokémons com o uso da API REST.
-- [x] ** Buscar pokémons**: Método para filtrar os pokémons a partir do seu nome.
+- [x] **Listagem dos pokémons**: Listar os pokémons com o uso da API REST.
+- [x] **Buscar pokémons**: Método para filtrar os pokémons a partir do seu nome.
 
 ### Funcionalidades futuras
 - [ ] **Selecionar pokémon**: Criar uma página na aplicação com mais detalhes sobre o pokémon escolhido.
