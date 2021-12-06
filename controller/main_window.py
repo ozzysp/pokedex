@@ -11,6 +11,14 @@ class MainWindow(QMainWindow):
         super().__init__()
         uic.loadUi(FILE_UI, self)
 
+        # lista de pokemons
+        self.lista_pokes = []
+        self.lista_search = []
+
+        # connect pesquisar
+        self.buscar_poke.textEdited.connect(self.text_edited)
+        self.buscar_poke.hide()
+
         self.threadpool = QThreadPool()
         worker = Worker(self.loadPokemons)
 
@@ -25,19 +33,45 @@ class MainWindow(QMainWindow):
         # start
         self.threadpool.start(worker)
 
+    def text_edited(self, search):
+        os.system("clear")
+        for i in reversed(range(self.layout_pokemons.count())): 
+            self.layout_pokemons.itemAt(i).widget().setParent(None)
+        if search != "":
+            lista_search = []
+            for p in self.lista_pokes:
+                if search in p['name']:
+                    print(p['name'])
+                    lista_search.append(p)
+            self.carrega_dados(lista_search)
+        else:
+            self.carrega_dados(self.lista_pokes)
+
+    def carrega_dados(self, lista):
+        lin = 0
+        i = 0
+        try:
+            while i < len(lista):
+                for col in range(0, 3):
+                    self.layout_pokemons.addWidget(
+                        Pokemon(lista[i]), lin, col)
+                    i += 1
+                lin += 1
+        except:
+            pass
+
     def progress_fn(self, i):
         msg = f"Carregando Pokemons... {i} de {NUMBER_MAX_POKEMONS_API}"
         self.statusbar.showMessage(msg)
 
     def insert_fn(self, t):
         # print(t)
-        data_poker = t[0]
-        info_poker = t[1]
-        icon_poker = t[2]
-        x = t[3]
-        y = t[4]
+        poke = t[0]
+        x = t[1]
+        y = t[2]
+        self.lista_pokes.append(poke)
         self.layout_pokemons.addWidget(
-            Pokemon(data_poker, info_poker, icon_poker), x, y)
+            Pokemon(poke), x, y)
 
     def loadPokemons(self, progress_callback, insert_callback):
         res = buscar_pokemons()
@@ -49,16 +83,19 @@ class MainWindow(QMainWindow):
                 for col in range(0, 3):
                     progress_callback.emit(i)
                     # pega os dados que exigem request
-                    data_poker = list[i]
-                    info_poker = buscar_pokemon(list[i]['url'])
-                    icon_poker = loadImg(info_poker['sprites']['other']['home']['front_default'])
+                    data_poke = list[i]
+                    info_poke = buscar_pokemon(list[i]['url'])
+                    poke = {'id': info_poke['id'],
+                            'name': data_poke['name'],
+                            'pixmap': loadImg(info_poke['sprites']['other']['home']['front_default']),
+                            'types': info_poke['types']
+                            }
                     # emit os dados coletados
-                    insert_callback.emit(
-                        (data_poker, info_poker, icon_poker, lin, col))
+                    insert_callback.emit((poke, lin, col))
                     i += 1
                 lin += 1
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         return "Carregamento concluído com sucesso!"
 
@@ -69,4 +106,4 @@ class MainWindow(QMainWindow):
 
     def print_result(self, result):
         self.statusbar.showMessage(result)
-        self.buscar_poke.setEnabled(True)
+        self.buscar_poke.show()
