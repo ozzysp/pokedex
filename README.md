@@ -6,7 +6,7 @@
 </p>
 
 ## Projeto
-Desenvolver um aplicativo desktop para listagem e visualização de pokémons, utilizando a linguagem de programação Python, o framework PyQt5 e a API REST [PokéApi](https://pokeapi.co/).
+Desenvolvimento de um aplicativo desktop para listagem e visualização de pokémons, utilizando a linguagem de programação Python, o framework PyQt5 e a API REST [PokéApi](https://pokeapi.co/).
 
 ### Funcionalidades
 - [x] **Listagem dos pokémons**: Listar os pokémons com o uso da API REST.
