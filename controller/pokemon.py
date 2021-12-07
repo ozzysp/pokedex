@@ -19,9 +19,10 @@ class Pokemon(QWidget):
 
         # personalizações
         self.img_label.setStyleSheet(
-            "background-image : url(assets/patterns/pokeball.svg); background-repeat: no-repeat; background-position: right; ")
+            "background-image : url(assets/patterns/pokeball.svg); background-repeat: no-repeat; background-position: right; background-size: auto; ")
         self.frame.setStyleSheet(
-            ".QFrame::hover {background-color : rgb(222, 221, 218);}")
+            ".QFrame::hover {background-color : rgb(222, 221, 218);}"
+            ".QFrame {background-color : rgb(255, 255, 255);border: 1px solid; border-radius: 10px; border-color: rgb(192, 191, 188);}")
 
     def mousePressEvent(self, event):
         print('clicou >>>> ' + self.nome)

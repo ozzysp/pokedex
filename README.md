@@ -25,7 +25,7 @@ Desenvolvimento de um aplicativo desktop para listagem e visualização de poké
 
 ### Conceitos abordados
 
-- Consumo de API com o uso da lib [request](https://docs.python-requests.org/)
+- Consumo de API com o uso do cliente HTTP [HTTPX](https://www.python-httpx.org/)
 - Construção de GUI com [PyQt5](https://pypi.org/project/PyQt5/)
 
 ## Instalação e execução

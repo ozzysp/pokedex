@@ -15,6 +15,10 @@ class MainWindow(QMainWindow):
         self.lista_pokes = []
         self.lista_search = []
 
+        # 
+        self.scrollArea.setStyleSheet(
+            ".QScrollArea {border-color: rgb(192, 191, 188);}")
+
         # connect pesquisar
         self.buscar_poke.textEdited.connect(self.text_edited)
         self.buscar_poke.hide()
@@ -85,7 +89,7 @@ class MainWindow(QMainWindow):
                     info_poke = buscar_pokemon(list[i]['url'])
                     poke = {'id': info_poke['id'],
                             'name': data_poke['name'],
-                            'pixmap': loadImg(info_poke['sprites']['other']['home']['front_default']),
+                            'pixmap': loadImg(info_poke['sprites']['other']['dream_world']['front_default']),
                             'types': info_poke['types']
                             }
                     # emit os dados coletados

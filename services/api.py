@@ -1,7 +1,7 @@
 # contém a chamada a API do Pokédex
 
-import requests
-import json
+import httpx
+from qt_core import *
 
 BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
 NUMBER_MAX_POKEMONS_API = 151
@@ -10,28 +10,19 @@ params = {'limit': NUMBER_MAX_POKEMONS_API}
 
 
 def buscar_pokemons():
-    request = requests.get(BASE_URL, params)
-    response = json.loads(request.content)
+    #request = requests.get(BASE_URL, params)
+    request = httpx.get(BASE_URL, params=params)
+    response = request.json()
     return response
 
 def buscar_pokemon(url_poke):
-    request = requests.get(url_poke)
-    response = json.loads(request.content)
+    request = httpx.get(url_poke)
+    response = request.json()
     return(response)
 
-
-if __name__ == '__main__':
-    import os
-    os.system('clear')
-    res = buscar_pokemon('https://pokeapi.co/api/v2/pokemon/1/')
-    # res.data.sprites.front_default;
-    print(res['sprites']['other']['home'])
-    """lista = buscar_pokemons()
-    print(len(lista))
-    for poke in lista:
-        print(f"{poke['name']} - {poke['url']}")"""
-
-
-# doc requests:
-#  https://docs.python-requests.org/en/latest/
-#  https://docs.python-requests.org/en/latest/user/quickstart/#passing-parameters-in-urls
+def loadImg(url_image):
+    if url_image != "":
+        img = httpx.get(url_image).content
+        image = QImage()
+        image.loadFromData(img)
+        return QPixmap(image)
