@@ -4,7 +4,7 @@ import httpx
 from qt_core import *
 
 BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
-NUMBER_MAX_POKEMONS_API = 151
+NUMBER_MAX_POKEMONS_API = 10
 
 params = {'limit': NUMBER_MAX_POKEMONS_API}
 

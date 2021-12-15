@@ -1,4 +1,6 @@
-from controller.pokemon import Pokemon
+from controller.detalhes_poke import DetalhesPoke
+from controller.card_pokemon import CardPokemon
+from model.pokemon import Pokemon
 from qt_core import *
 from services.api import *
 from services.worker import Worker
@@ -15,7 +17,7 @@ class MainWindow(QMainWindow):
         self.lista_pokes = []
         self.lista_search = []
 
-        # 
+        #
         self.scrollArea.setStyleSheet(
             ".QScrollArea {border-color: rgb(192, 191, 188);}")
 
@@ -37,15 +39,19 @@ class MainWindow(QMainWindow):
         # start
         self.threadpool.start(worker)
 
+    def showInfoPoke(self, poke):
+        self.stackedWidget.insertWidget(1, DetalhesPoke(poke, self))
+        self.stackedWidget.setCurrentIndex(1)
+
     def text_edited(self, search):
         for i in reversed(range(self.layout_pokemons.count())):
-               self.layout_pokemons.itemAt(i).widget().deleteLater()
+            self.layout_pokemons.itemAt(i).widget().deleteLater()
         if search == "":
             self.carrega_dados(self.lista_pokes)
         else:
             lista_search = []
             for p in self.lista_pokes:
-                if search in p['name']:
+                if search in p.nome:
                     lista_search.append(p)
             self.carrega_dados(lista_search)
 
@@ -56,7 +62,7 @@ class MainWindow(QMainWindow):
             while i < len(lista):
                 for col in range(0, 3):
                     self.layout_pokemons.addWidget(
-                        Pokemon(lista[i]), lin, col)
+                        CardPokemon(lista[i], self), lin, col)
                     i += 1
                 lin += 1
         except:
@@ -73,7 +79,7 @@ class MainWindow(QMainWindow):
         y = t[2]
         self.lista_pokes.append(poke)
         self.layout_pokemons.addWidget(
-            Pokemon(poke), x, y)
+            CardPokemon(poke, self), x, y)
 
     def loadPokemons(self, progress_callback, insert_callback):
         res = buscar_pokemons()
@@ -87,11 +93,18 @@ class MainWindow(QMainWindow):
                     # pega os dados que exigem request
                     data_poke = list[i]
                     info_poke = buscar_pokemon(list[i]['url'])
-                    poke = {'id': info_poke['id'],
-                            'name': data_poke['name'],
-                            'pixmap': loadImg(info_poke['sprites']['other']['dream_world']['front_default']),
-                            'types': info_poke['types']
-                            }
+
+                    tipos = []
+                    for type in info_poke['types']:
+                        tipos.append(type['type']['name'])
+
+                    poke = Pokemon(info_poke['id'],
+                                   data_poke['name'],
+                                   loadImg(info_poke['sprites']['other']
+                                           ['dream_world']['front_default']),
+                                   tipos
+                                   )
+
                     # emit os dados coletados
                     insert_callback.emit((poke, lin, col))
                     i += 1
